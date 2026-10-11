@@ -1,0 +1,12 @@
+{
+  "pages": ["pages/index/index"],
+  "window": {
+    "navigationBarTitleText": "拼豆图纸生成器",
+    "navigationBarBackgroundColor": "#FAF8F5",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FAF8F5"
+  },
+  "style": "v2",
+  "__usePrivacyCheck__": true,
+  "lazyCodeLoading": "requiredComponents"
+}

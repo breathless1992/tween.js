@@ -1,4 +1,5 @@
+node_modules/
 .DS_Store
-build/npm*
-node_modules
-npm-debug.log
+project.private.config.json
+artifacts/*.zip
+tests/fixtures/private/
