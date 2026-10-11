@@ -1,0 +1,47 @@
+{
+  "fixture": "synthetic dog, NOT user artwork",
+  "realBrandPalette": false,
+  "referenceProvided": false,
+  "results": [
+    {
+      "size": 52,
+      "beads": 2704,
+      "colors": 33,
+      "totalCount": 2704,
+      "codedParts": 1,
+      "milliseconds": 100
+    },
+    {
+      "size": 78,
+      "beads": 6084,
+      "colors": 40,
+      "totalCount": 6084,
+      "codedParts": 4,
+      "milliseconds": 72
+    },
+    {
+      "size": 100,
+      "beads": 10000,
+      "colors": 39,
+      "totalCount": 10000,
+      "codedParts": 9,
+      "milliseconds": 545
+    },
+    {
+      "size": 104,
+      "beads": 10816,
+      "colors": 41,
+      "totalCount": 10816,
+      "codedParts": 4,
+      "milliseconds": 111
+    },
+    {
+      "size": 120,
+      "beads": 14400,
+      "colors": 40,
+      "totalCount": 14400,
+      "codedParts": 9,
+      "milliseconds": 1513
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+<view class="page">
+  <view class="title">拼豆图纸生成器</view>
+  <view class="upload-row">
+    <button class="primary" bindtap="takePhoto" disabled="{{exporting}}">拍照</button>
+    <button class="secondary" bindtap="choosePhoto" disabled="{{exporting}}">选择图片</button>
+  </view>
+  <image wx:if="{{sourcePath}}" class="source" src="{{sourcePath}}" mode="aspectFit" bindtap="viewSource" />
+  <view wx:else class="empty">选择一张图片，开始制作图纸</view>
+  <view class="label">图纸尺寸</view>
+  <view class="chips">
+    <button wx:for="{{sizes}}" wx:key="*this" class="chip {{size === item ? 'selected' : ''}}" data-size="{{item}}" bindtap="selectSize" disabled="{{exporting}}">{{item}}×{{item}}</button>
+  </view>
+  <view class="label">图像优化</view>
+  <view class="chips modes">
+    <button wx:for="{{modes}}" wx:key="value" class="chip {{mode === item.value ? 'selected' : ''}}" data-mode="{{item.value}}" bindtap="selectMode" disabled="{{exporting}}">{{item.label}}</button>
+  </view>
+  <view wx:if="{{mode === 'photo'}}" class="dither-row"><text>柔和抖动</text><switch checked="{{dither}}" bindchange="toggleDither" color="#866445" disabled="{{exporting}}" /></view>
+  <view wx:if="{{busy}}" class="status">正在生成 {{progress}}%</view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view class="preview-box" hidden="{{!hasPattern}}" bindtap="zoomPattern">
+    <canvas id="preview" type="2d" class="preview" />
+    <view class="preview-caption">{{patternSize}}×{{patternSize}} · {{actualMode}} <text>放大 ↗</text></view>
+  </view>
+  <view class="export-row">
+    <button class="primary" bindtap="exportCoded" disabled="{{!hasPattern || busy || exporting}}">导出高清带色号 PNG</button>
+    <button class="secondary" bindtap="exportPlain" disabled="{{!hasPattern || busy || exporting}}">导出无字 PNG</button>
+  </view>
+  <view wx:if="{{exportStatus}}" class="status">{{exportStatus}}</view>
+  <view wx:if="{{isDemo}}" class="demo">当前为演示色卡，D 色号不对应品牌；制作前需由开发者替换真实色卡。</view>
+  <view wx:if="{{hasPattern}}" class="label">颜色用量 <text class="muted">{{stats.length}} 种 · {{total}} 颗</text></view>
+  <view class="stats">
+    <view wx:for="{{stats}}" wx:key="code" class="stat"><view class="swatch" style="background: {{item.hex}};"></view><text>{{item.code}} ({{item.count}})</text></view>
+  </view>
+  <view wx:if="{{exportFiles.length}}" class="exports">
+    <view class="label">已导出 <text class="muted">{{exportFiles.length}} 张</text></view>
+    <view class="file-row"><button size="mini" class="secondary" bindtap="viewExports">查看图纸</button><button size="mini" class="primary" bindtap="saveExports" disabled="{{exporting}}">保存全部到相册</button></view>
+  </view>
+  <canvas id="processing" type="2d" class="offscreen" />
+  <canvas id="exporter" type="2d" class="offscreen" />
+  <view wx:if="{{zoomOpen}}" class="zoom">
+    <view class="zoom-header"><text>图纸放大查看</text><button size="mini" bindtap="closeZoom">关闭</button></view>
+    <movable-area class="zoom-area"><movable-view class="zoom-movable" direction="all" scale="{{true}}" scale-min="1" scale-max="6" scale-value="1"><canvas id="zoomCanvas" type="2d" class="zoom-canvas" /></movable-view></movable-area>
+  </view>
+</view>

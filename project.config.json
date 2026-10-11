@@ -1,0 +1,15 @@
+{
+  "description": "拼豆图纸生成器：本地图片处理与高清图纸导出",
+  "miniprogramRoot": "miniprogram/",
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "bead-pattern-generator",
+  "libVersion": "3.7.0",
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "minified": true,
+    "urlCheck": true,
+    "postcss": true
+  }
+}
